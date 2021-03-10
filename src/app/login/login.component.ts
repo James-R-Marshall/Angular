@@ -1,10 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { User } from '../user';
+import { BrowserModule } from '@angular/platform-browser'
+import { setClassMetadata } from '@angular/core/src/r3_symbols';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,26 +16,49 @@ export class LoginComponent implements OnInit {
     username;
     password;
     url;
+    data;
+    get;
     
-    service;
   login: Observable<Object>;
 
-    constructor( private route: ActivatedRoute, service:AuthService) { 
-      this.login = service.getauth(this.username, this.password);
+  // try callback for null error
+
+    constructor( private route:ActivatedRoute, private router:Router,private service:AuthService) { 
+      this.ngOnInit();
+      if(this.get){
+     this.authenticate();
+    }
     }
 
-    onClick(){
-      this.login.subscribe(r=>{
-        console.log(r);
+    authenticate(){
+      this.login = this.service.getauth(this.username, this.password);
+      this.login.subscribe((r) => {
+        this.data=r;
+        console.log(this.data);
+        if(this.data != null)
+        this.router.navigate(['/']);
+        else  
+          console.log("invalid");
       });
+       
+
     }
-  
+
+    loginf(credentials){
+      this.username = credentials["username"];
+      this.password = credentials["password"];
+      this.authenticate();
+    }
+
     ngOnInit(): void {
      this.route.queryParamMap.subscribe( res=>{
         this.password = res.get("password")
         this.username = res.get("username")
-     })
-      
-
+     });
+     if(this.password != null){
+       this.get = true;
+     }
+     else
+      this.get=false;
     }
   }

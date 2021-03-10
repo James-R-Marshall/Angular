@@ -22,6 +22,7 @@ import { AuthService } from './auth.service';
     AppComponent,
     WorkingComponent,
     PanelComponent,
+    LoginComponent,
     QuoteComponent,
     NavbarComponent,
     HomeComponent,
