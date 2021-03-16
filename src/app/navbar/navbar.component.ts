@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+
 export class NavbarComponent implements OnInit {
   data$: string ;
   dt$ :Observable<string>;
