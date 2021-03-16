@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule} from '@angular/router'
-
+import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorkingComponent } from './working/working.component';
@@ -54,6 +54,7 @@ import { AuthService } from './auth.service';
     FormsModule  
 ],
   providers: [
+    CookieService,
     AuthService
   ],
   bootstrap: [AppComponent]
