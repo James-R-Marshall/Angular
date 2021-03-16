@@ -5,7 +5,6 @@ import {RouterModule} from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { WorkingComponent } from './working/working.component';
 import { PanelComponent } from './panel/panel.component';
 import { QuoteComponent } from './quote/quote.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,7 +19,6 @@ import { AuthService } from './auth.service';
 @NgModule({
   declarations: [
     AppComponent,
-    WorkingComponent,
     PanelComponent,
     LoginComponent,
     QuoteComponent,
